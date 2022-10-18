@@ -313,3 +313,14 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
+
+#### `POST /api/followersFollowing/:userId?` - Create a new followerFollowing
+
+**Returns**
+
+- A success message
+- An object with the created user's details
+
+**Throws**
+
+- `403` if there is a user already initiated in

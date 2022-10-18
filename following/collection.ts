@@ -19,9 +19,8 @@ class followerFollowingCollection {
    * @return {Promise<HydratedDocument<followerFollowing>>} - The newly created followerFollowing
    */
      static async addOne(userId: Types.ObjectId): Promise<HydratedDocument<followerFollowing>> {
-      const followers = new Set<Types.ObjectId>();
+      const followers = new Set<Types.ObjectId>(); //followers and following start as empty sets
       const following = new Set<Types.ObjectId>();
-  
       const followerFollowing = new followerFollowingModel({userId, followers, following});
       await followerFollowing.save(); // Saves user to MongoDB
       return followerFollowing;
