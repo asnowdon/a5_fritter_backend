@@ -38,7 +38,23 @@ const formsAndHandlers = {
   'view-freets-by-author': viewFreetsByAuthor,
   'create-freet': createFreet,
   'edit-freet': editFreet,
-  'delete-freet': deleteFreet
+  'delete-freet': deleteFreet,
+  'create-follower':createFollower,
+  'delete-follower':deleteFollower,
+  'view-all-followers':viewAllFollowers,
+  'view-all-followers-of-username': viewAllFollowersOfUsername,
+  // 'view-one-follower-of-userId': viewOneFollowerOfUserId,
+  'create-like': createLike,
+  'delete-like': deleteLike,
+  'view-all-likes-of-username': viewAllLikesOfUsername,
+  'view-all-likes-of-freetId': viewAllLikesOfFreetId,
+  'create-best-freet':createBestFreet,
+  'delete-best-freet': deleteBestFreet,
+  'view-all-best-freet-of-username':viewAllBestFreetOfUsername,
+  'view-all-best-freet-of-freetId':viewAllBestFreetsOfFreetId,
+  'view-description-of-username':viewDescriptionOfUsername,
+  'edit-description':editDescription,
+  'view-feed':viewFeed
 };
 
 // Attach handlers to forms

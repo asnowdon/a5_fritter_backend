@@ -314,13 +314,177 @@ This renders the `index.html` file that will be used to interact with the backen
 
 - `403` if the user is not logged in
 
-#### `POST /api/followersFollowing/:userId?` - Create a new followerFollowing
+#### `POST /api/follwers/:username?` - Create a new follower
 
 **Returns**
 
 - A success message
-- An object with the created user's details
+- An object with the created follower's details
 
 **Throws**
 
-- `403` if there is a user already initiated in
+- `403` if the username doesnt correspond to a user
+
+
+#### `DELETE /api/follwers` - Delete a follower
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if the user is not logged in 
+
+
+#### `GET /api/follwers/username=:username?` - View all followers of user with username
+
+**Returns**
+
+- A success message
+- A list of all their followers
+
+**Throws**
+
+- `400` if username is not given
+
+
+#### `POST /api/likes/:freetId?` - Create a new like of freetId 
+
+**Returns**
+
+- A success message
+- The created Like
+
+**Throws**
+
+- `403` if user is not logged in 
+- `404` if freet does not exist
+
+
+#### `DELETE /api/likes/:freetId?` - Delete a  like of freetId 
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if user is not logged in 
+- `404` if freet does not exist
+ 
+
+#### `GET /api/likes/username=:username?` - View all likes of user with username
+
+**Returns**
+
+- A success message
+- An array of all their likes
+
+**Throws**
+
+- `400` if username is not given
+- `404` if no user has given username
+
+
+#### `GET /api/likes/freetId=:freetId?` - View all likes of freet with freetId
+
+**Returns**
+
+- A success message
+- An array of all the likes
+
+**Throws**
+
+- `400` if id is not given
+- `404` if no freet has given freetId
+
+
+#### `POST /api/bestFreets/:freetId?` - Create a new bestFreet of freetId 
+
+**Returns**
+
+- A success message
+- The created bestFreet
+
+**Throws**
+
+- `403` if user is not logged in 
+- `403` if the freetId is invalid
+- `404` if user has used a bestFreet within 24 hrs
+
+
+#### `DELETE /api/bestFreets/:freetId?` - Delete a bestFreet on freetId 
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if user is not logged in 
+- `404` if freet does not exist
+
+
+#### `GET /api/bestFreets/freetId=:freetId?` - View all bestFreets of freet with freetId
+
+**Returns**
+
+- A success message
+- An array of all the bestFreets
+
+**Throws**
+
+- `400` if id is not given
+- `404` if no freet has given freetId
+
+
+#### `GET /api/bestFreets/uesrname=:username?` - View all bestFreets of user with username
+
+**Returns**
+
+- A success message
+- An array of all the bestFreets
+
+**Throws**
+
+- `400` if id is not given
+- `404` if no user has given username
+
+
+#### `GET /api/descriptions/uesrname=:username?` - View description of user with username
+
+**Returns**
+
+- A success message
+- A description object
+
+**Throws**
+
+- `400` if username is not given
+- `404` if no user has given username
+
+#### `PUT /api/descriptions` - Edit description of user with username
+
+**Returns**
+
+- A success message
+- A description object
+
+**Throws**
+
+- `403` if user is not logged in
+- `400` if new description content is empty or a stream of spaces
+- `413` if the description content is more than 60 characters long
+
+
+#### `GET /api/feeds` - View feed of user
+
+**Returns**
+
+- A success message
+- An array of the freets in the user's feed
+
+**Throws**
+
+- `403` if user is not logged in

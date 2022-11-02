@@ -2,6 +2,7 @@ import type {HydratedDocument, Types} from 'mongoose';
 import type {Freet} from './model';
 import FreetModel from './model';
 import UserCollection from '../user/collection';
+import followerCollection from '../follower/collection';
 
 /**
  * This files contains a class that has the functionality to explore freets
@@ -61,6 +62,17 @@ class FreetCollection {
     const author = await UserCollection.findOneByUsername(username);
     return FreetModel.find({authorId: author._id}).populate('authorId');
   }
+
+    /**
+   * Get all the freets in by given userId
+   *
+   * @param {string} userId - The username of author of the freets
+   * @return {Promise<HydratedDocument<Freet>[]>} - An array of all of the freets
+   */
+     static async findAllByUserId(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<Freet>>> {
+      // const author = await UserCollection.findOneByUsername(username);
+      return FreetModel.find({authorId: userId}).populate('authorId');
+    }
 
   /**
    * Update a freet with the new content

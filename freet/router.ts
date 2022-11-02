@@ -4,6 +4,9 @@ import FreetCollection from './collection';
 import * as userValidator from '../user/middleware';
 import * as freetValidator from '../freet/middleware';
 import * as util from './util';
+import followerCollection from '../follower/collection';
+// import FeedCollection from '../feed/collection';
+import UserCollection from '../user/collection';
 
 const router = express.Router();
 
@@ -67,8 +70,13 @@ router.post(
   ],
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
+    const User = await UserCollection.findOneByUserId(userId);
     const freet = await FreetCollection.addOne(userId, req.body.content);
-
+    const freetId = freet._id.toString();
+    // const followers = await followerCollection.findAllFollowersOfUsername(User.username);
+    // followers.forEach(async follower => {
+    //   await FeedCollection.addOne(userId, freetId);
+    // });
     res.status(201).json({
       message: 'Your freet was created successfully.',
       freet: util.constructFreetResponse(freet)

@@ -1,9 +1,11 @@
 import type {Request, Response} from 'express';
 import express from 'express';
 import FreetCollection from '../freet/collection';
+import FollowerFollwingCollection from '../follower/collection';
 import UserCollection from './collection';
 import * as userValidator from '../user/middleware';
 import * as util from './util';
+import descriptionCollection from '../description/collection';
 
 const router = express.Router();
 
@@ -86,7 +88,11 @@ router.post(
   ],
   async (req: Request, res: Response) => {
     const user = await UserCollection.addOne(req.body.username, req.body.password);
+    
+    // const followerFollowing = await FollowerFollwingCollection.addOne(user._id);
     req.session.userId = user._id.toString();
+    const content = ' ';
+    const description = await descriptionCollection.addOne(req.session.userId,content);
     res.status(201).json({
       message: `Your account was created successfully. You have been logged in as ${user.username}`,
       user: util.constructUserResponse(user)
